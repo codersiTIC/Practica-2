@@ -1,26 +1,48 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+'''
+Module *recepta*
+================
+'''
+
 from producte import*
 from string import*
+
+"""
+Checks if an image (Type, Matrix) is null
+
+    :param img: Image representation (Type, Matrix)
+    :type img: tuple
+    :returns: True (if it is null) or False (if not)
+    :rtype: bool
+
+>>> is_null(('NULL', None))
+True
+>>> is_null(('RGB',[(255,255,255),(255,255,255)]))
+False
+"""
+
 
 class Recepta(object):
     """docstring for Recepta."""
 
     def __init__(self, nom, ingredients):
         self.nom = nom
-        self._ingredients = ingredients # llista de tuples (p, q) (producte, quantitat)
+        self._ingredients = [(tupla[0].capitalize(), tupla[1]) for tupla in ingredients] 
+                            # llista de tuples (p, q) (producte, quantitat)
 
     def afegeix_ingredient(self, p,q):
         '''
-        -- Modificador. Afegeix q grams del producte p a la recepta --
-
+        Modificador. Afegeix q grams del producte p a la recepta\n
         Si la recepta ja contenia el Producte p, incrementa la seva quantitat en q grams.
+        
+            :param p: Producte
+            :type p: str
+            :returns:  
         >>> r = Recepta('Pastís Xocolata', [('Xocolata', 200), ('Farina', 500)])
-
         >>> r.afegeix_ingredient('Llet', 150)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 150)]
-    
         >>> r.afegeix_ingredient('llet', 100)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 250)]
         ''' 
@@ -43,19 +65,19 @@ class Recepta(object):
 
     def conte_ingredient(self,p):
         '''
-        -- Donat un producte, retorna True si està dins la recepta --
+        Donat un producte, retorna True si està dins la recepta
 
-        >>> llimonada = Recepta('llimonada', [('llimona', 50), ('aigua', 1000), ('sucre', 10)])
-        >>> llimonada.conte_ingredient('llimona')
+        >>> llimonada = Recepta('llimonada', [('lLimona', 50), ('aigua', 1000), ('sucre', 10)])
+        >>> llimonada.conte_ingredient('Llimona')
         True
-        >>> llimonada.conte_ingredient('aigua')
+        >>> llimonada.conte_ingredient('Aigua')
         True
-        >>> llimonada.conte_ingredient('poma')
+        >>> llimonada.conte_ingredient('PoMa')
         False
         '''
 
         for element in self._ingredients:
-            if element[0] == p:
+            if element[0] == p.capitalize():
                 return True
 
         else:

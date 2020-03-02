@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+'''
+Module *producte*
+=================
+'''
+
 class Producte(object):
     """
     docstring for Product.
