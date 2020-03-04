@@ -4,6 +4,8 @@
 '''
 Module *producte*
 =================
+
+Bàsicament, la classe Producte retorna el str del producte mateix
 '''
 
 class Producte(object):
@@ -12,7 +14,7 @@ class Producte(object):
 
     >>> Producte('orange').producte
     'Orange'
-    >>> Producte('banana').producte
+    >>> Producte('BanAna').producte
     'Banana'
     >>> Producte('salt').producte
     'Salt'
