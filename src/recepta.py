@@ -29,23 +29,23 @@ class Recepta(object):
 
     def __init__(self, nom, ingredients):
         self.nom = nom
-        self._ingredients = [(tupla[0].capitalize(), tupla[1]) for tupla in ingredients] 
+        self._ingredients = [(tupla[0].capitalize(), tupla[1]) for tupla in ingredients]
                             # llista de tuples (p, q) (producte, quantitat)
 
     def afegeix_ingredient(self, p,q):
         '''
         Modificador. Afegeix q grams del producte p a la recepta\n
         Si la recepta ja contenia el Producte p, incrementa la seva quantitat en q grams.
-        
+
             :param p: Producte
             :type p: str
-            :returns:  
+            :returns:
         >>> r = Recepta('Pastís Xocolata', [('Xocolata', 200), ('Farina', 500)])
         >>> r.afegeix_ingredient('Llet', 150)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 150)]
         >>> r.afegeix_ingredient('llet', 100)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 250)]
-        ''' 
+        '''
 
         for element in self._ingredients:
             i = 0
@@ -59,7 +59,7 @@ class Recepta(object):
 
         else:
             self._ingredients.append((Producte(p).producte,q))
-        
+
         return self._ingredients
 
 
