@@ -9,28 +9,13 @@ Module *recepta*
 from producte import*
 from string import*
 
-"""
-Checks if an image (Type, Matrix) is null
-
-    :param img: Image representation (Type, Matrix)
-    :type img: tuple
-    :returns: True (if it is null) or False (if not)
-    :rtype: bool
-
->>> is_null(('NULL', None))
-True
->>> is_null(('RGB',[(255,255,255),(255,255,255)]))
-False
-"""
-
 
 class Recepta(object):
     """docstring for Recepta."""
 
-    def __init__(self, nom, ingredients):
+    def __init__(self, nom):
         self.nom = nom
-        self._ingredients = [(tupla[0].capitalize(), tupla[1]) for tupla in ingredients]
-                            # llista de tuples (p, q) (producte, quantitat)
+        self._ingredients = []
 
     def afegeix_ingredient(self, p,q):
         '''
@@ -40,8 +25,9 @@ class Recepta(object):
             :param p: Producte
             :type p: str
             :returns:
+
         >>> r = Recepta('Pastís Xocolata', [('Xocolata', 200), ('Farina', 500)])
-        >>> r.afegeix_ingredient('Llet', 150)
+        >>> r.afegeix_ingredient('LLet', 150)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 150)]
         >>> r.afegeix_ingredient('llet', 100)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 250)]
@@ -49,7 +35,7 @@ class Recepta(object):
 
         for element in self._ingredients:
             i = 0
-            if element[0] == p.capitalize():
+            if element[0] == p:
                 j = element[1]
                 i = self._ingredients.index(element)
 
@@ -75,10 +61,21 @@ class Recepta(object):
         >>> llimonada.conte_ingredient('PoMa')
         False
         '''
+        return element[0] == p for element in self._ingredients
 
         for element in self._ingredients:
-            if element[0] == p.capitalize():
+            return element[0] == p
+        '''
+            if element[0] == p:
                 return True
+        '''
+
+        else:
+            return False
+
+
+        for element in self._ingredients:
+            return element[0] == p
 
         else:
             return False
@@ -98,7 +95,7 @@ class Recepta(object):
 
         '''
         for element in self._ingredients:
-            if element[0] == p.capitalize():
+            if element[0] == p:
                 return element[1]
 
         else:

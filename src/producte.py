@@ -13,17 +13,17 @@ class Producte(object):
     docstring for Product.
 
     >>> Producte('orange').producte
-    'Orange'
+    'orange'
     >>> Producte('BanAna').producte
-    'Banana'
+    'BanAna'
     >>> Producte('salt').producte
-    'Salt'
+    'salt'
 
 
     """
 
     def __init__(self, producte):
-        self.producte = producte.capitalize()
+        self.producte = producte
 
 if __name__ == "__main__":
 
