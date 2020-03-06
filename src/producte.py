@@ -18,8 +18,6 @@ class Producte(object):
     'BanAna'
     >>> Producte('salt').producte
     'salt'
-
-
     """
 
     def __init__(self, producte):

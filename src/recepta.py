@@ -32,9 +32,8 @@ class Recepta(object):
         >>> r.afegeix_ingredient('llet', 100)
         [('Xocolata', 200), ('Farina', 500), ('Llet', 250)]
         '''
-
+        i = 0
         for element in self._ingredients:
-            i = 0
             if element[0] == p:
                 j = element[1]
                 i = self._ingredients.index(element)
@@ -61,25 +60,12 @@ class Recepta(object):
         >>> llimonada.conte_ingredient('PoMa')
         False
         '''
-        return element[0] == p for element in self._ingredients
 
         for element in self._ingredients:
-            return element[0] == p
-        '''
             if element[0] == p:
                 return True
-        '''
-
         else:
             return False
-
-
-        for element in self._ingredients:
-            return element[0] == p
-
-        else:
-            return False
-
 
     def quantitat_ingredient(self,p):
         '''
