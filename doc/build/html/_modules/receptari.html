@@ -49,27 +49,59 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Module *receptari*</span>
 <span class="sd">==================</span>
 
-<span class="sd">El mòdul receptari.py conté la classe Receptari. La classe ha de tenir els següents atributs:</span>
+<span class="sd">El mòdul *receptari.py* conté la classe *Receptari*, la qual està fonamentalment</span>
+<span class="sd">formada per múltiples objectes de tipus *Recepta*. S&#39;ha decidit representar als</span>
+<span class="sd">objectes de la classe mitjançant dos atributs principals:</span>
+
 <span class="sd">receptes [dict, Privat]</span>
-<span class="sd">    És un diccionari en el que la clau correspon al nom de totes les _receptes</span>
+<span class="sd">    És un diccionari en el que la clau correspon al nom de totes les receptes</span>
 <span class="sd">    del receptari i el valor correspon a l’objecte Recepta corresponent.</span>
 
 <span class="sd">productes [dict, Privat]</span>
 <span class="sd">    És un diccionari en el que la clau correspon al nom de tots els productes</span>
-<span class="sd">    que intervenen en el receptari i el valor correspon a l’objecte Producte corresponent.</span>
+<span class="sd">    que intervenen en el receptari i el valor correspon a l’objecte Producte</span>
+<span class="sd">    corresponent.</span>
+
+<span class="sd">* *El receptari inicialment no conté cap recepta ni producta*.\n</span>
+<span class="sd">La classe *Receptari* és de tipus mutable, ja què conté els mètodes modificadors</span>
+<span class="sd">*afegeix_recepta*, *afegeix_producte* i *afegeix_ingredient_recepta*. La resta</span>
+<span class="sd">de mètodes no modificadors de la classe són: *receptes_ingredient*, *receptes*, *ingredients* i *recepta*. En total, 7 mètodes específics dels objectes tipus *Receptari*, explicats a continuació:</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">from</span> <span class="nn">recepta</span> <span class="kn">import</span><span class="o">*</span>
-<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span><span class="o">*</span>
 
 <div class="viewcode-block" id="Receptari"><a class="viewcode-back" href="../receptari.html#receptari.Receptari">[docs]</a><span class="k">class</span> <span class="nc">Receptari</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;docstring for Receptari.&quot;&quot;&quot;</span>
-    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    -- Doctests conjunts de la classe *Recepta* --</span>
+
+<span class="sd">    &gt;&gt;&gt; r = Receptari()</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_recepta(&#39;Pastis Xocolata&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_recepta(&#39;Pastis Xocolata&#39;)</span>
+<span class="sd">    La recepta ja existeix</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_recepta(&#39;Gofre&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_producte(&#39;Llet&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_producte(&#39;Ous&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_ingredient_recepta(&#39;Gofre&#39;, &#39;Llet&#39;, 500)</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_ingredient_recepta(&#39;Pastis Xocolata&#39;, &#39;Llet&#39;, 200)</span>
+<span class="sd">    &gt;&gt;&gt; r.afegeix_ingredient_recepta(&#39;Pastis Xocolata&#39;, &#39;Ous&#39;, 200)</span>
+<span class="sd">    &gt;&gt;&gt; r.receptes_ingredient(&#39;Llet&#39;)</span>
+<span class="sd">    [&#39;Gofre&#39;, &#39;Pastis Xocolata&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; r.receptes_ingredient(&#39;Ous&#39;)</span>
+<span class="sd">    [&#39;Pastis Xocolata&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; r.receptes()</span>
+<span class="sd">    [&#39;Gofre&#39;, &#39;Pastis Xocolata&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; r.ingredients()</span>
+<span class="sd">    [&#39;Ous&#39;, &#39;Llet&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; r.recepta(&#39;Pastis Xocolata&#39;)</span>
+<span class="sd">    [(&#39;Llet&#39;, 200), (&#39;Ous&#39;, 200)]</span>
+<span class="sd">    &gt;&gt;&gt; r.recepta(&#39;Gofre&#39;)</span>
+<span class="sd">    [(&#39;Llet&#39;, 500)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_receptes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_productes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -77,13 +109,10 @@
 
 <div class="viewcode-block" id="Receptari.afegeix_recepta"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.afegeix_recepta">[docs]</a>    <span class="k">def</span> <span class="nf">afegeix_recepta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Modificador. Afegeix una recepta de nom n al receptari. Si existia una recepta del mateix</span>
-<span class="sd">        nom es queixa.</span>
-<span class="sd">        La recepta, inicialment no té ingredients.</span>
+<span class="sd">        Modificador. Afegeix una recepta de nom n al receptari, és a dir, afegeix al dicionari de clau [nomr] una instància de Receptari(nomr).</span>
 
-<span class="sd">        :param n: Nom de la Recepta</span>
+<span class="sd">        :param n: Nom de la recepta</span>
 <span class="sd">        :type n: str</span>
-<span class="sd">        :returns: Res</span>
 
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_recepta(&#39;Pastis Xocolata&#39;)</span>
@@ -100,7 +129,10 @@
 
 <div class="viewcode-block" id="Receptari.afegeix_producte"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.afegeix_producte">[docs]</a>    <span class="k">def</span> <span class="nf">afegeix_producte</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nomp</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Afegeix un nou Producte de nom nomp. Si el producte ja existeix es queixa.</span>
+<span class="sd">        Afegeix un nou Producte de nom nomp.</span>
+
+<span class="sd">        :param nomp: Nom del producte</span>
+<span class="sd">        :type nomp: str</span>
 
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_producte(&#39;Farina&#39;)</span>
@@ -112,13 +144,19 @@
         <span class="k">if</span> <span class="n">nomp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_productes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="nb">print</span> <span class="s2">&quot;El producte ja existeix&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_productes</span><span class="p">[</span><span class="n">nomp</span><span class="p">]</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="n">nomp</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_productes</span><span class="p">[</span><span class="n">nomp</span><span class="p">]</span> <span class="o">=</span> <span class="n">Producte</span><span class="p">(</span><span class="n">nomp</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Receptari.afegeix_ingredient_recepta"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.afegeix_ingredient_recepta">[docs]</a>    <span class="k">def</span> <span class="nf">afegeix_ingredient_recepta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nomr</span><span class="p">,</span><span class="n">nomp</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Afegeix q grams de l’ingredient de nom nomp a la recepta de nom nomr. Si la recepta o</span>
-<span class="sd">        l’ingredient no existeix es queixa.</span>
+<span class="sd">        Afegeix q grams de l’ingredient de nom nomp a la recepta de nom nomr.</span>
+
+<span class="sd">        :param nomr: Nom de la recepta</span>
+<span class="sd">        :type nomr: str</span>
+<span class="sd">        :param nomp: Nom del pecepta</span>
+<span class="sd">        :type nomp: str</span>
+<span class="sd">        :param q: Quantitat de producte en gr</span>
+<span class="sd">        :type q: int</span>
 
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_producte(&#39;Farina&#39;)</span>
@@ -141,10 +179,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_receptes</span><span class="p">[</span><span class="n">nomr</span><span class="p">]</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="n">nomp</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="Receptari.receptes_ingredient"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.receptes_ingredient">[docs]</a>    <span class="k">def</span> <span class="nf">receptes_ingredient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nomp</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Retorna la llista de noms de receptes en que participa l’ingredient de nom nomp.</span>
+<span class="sd">        :param nomp: Nom del producte</span>
+<span class="sd">        :type nomp: str</span>
+<span class="sd">        :returns: Una llista de noms de receptes que contenen l&#39;ingredient *nomp*</span>
+<span class="sd">        :rtype: llista</span>
 
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_recepta(&#39;Gofre&#39;)</span>
@@ -169,6 +210,7 @@
 <span class="sd">        [&#39;Gofre&#39;]</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.receptes_ingredient(&#39;Ous&#39;)</span>
 <span class="sd">        []</span>
+
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">recepta</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_receptes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -179,7 +221,8 @@
 
 <div class="viewcode-block" id="Receptari.receptes"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.receptes">[docs]</a>    <span class="k">def</span> <span class="nf">receptes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Retorna la llista de noms de receptes del receptari.</span>
+<span class="sd">        :returns: La llista dels noms de les receptes que conté el receptari</span>
+<span class="sd">        :rtype: llista</span>
 <span class="sd">        </span>
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_recepta(&#39;Gofre&#39;)</span>
@@ -196,8 +239,9 @@
 
 <div class="viewcode-block" id="Receptari.ingredients"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.ingredients">[docs]</a>    <span class="k">def</span> <span class="nf">ingredients</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Retorna la llista de noms de productes del receptari.</span>
-
+<span class="sd">        :returns: La llista dels noms de productes del receptari</span>
+<span class="sd">        :rtype: llista</span>
+<span class="sd">        </span>
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_recepta(&#39;Gofre&#39;)</span>
 
@@ -214,8 +258,11 @@
 
 <div class="viewcode-block" id="Receptari.recepta"><a class="viewcode-back" href="../receptari.html#receptari.Receptari.recepta">[docs]</a>    <span class="k">def</span> <span class="nf">recepta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nomr</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Retorna una llista de parells (nomp, q) cadascun dels quals representa un ingredient de la</span>
-<span class="sd">        recepta nomr. Cada parell agrega el nom del producte nomr i el pes necessari en grams q.</span>
+<span class="sd">        :param nomr: Nom de la recepta</span>
+<span class="sd">        :type nomr: str</span>
+<span class="sd">        :returns: Retorna una llista de parells (nomp, q) cadascun dels quals representa un ingredient de la recepta **nomr**. Cada parell agrega el nom del producte nomr i el pes necessari en **q** grams.</span>
+
+<span class="sd">        :rtype: llista</span>
 
 <span class="sd">        &gt;&gt;&gt; Receptari = Receptari()</span>
 <span class="sd">        &gt;&gt;&gt; Receptari.afegeix_recepta(&#39;Gofre&#39;)</span>

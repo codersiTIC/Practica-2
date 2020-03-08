@@ -1,0 +1,3 @@
+.. automodule:: interpret
+   :synopsis: INFO 6
+   :members:

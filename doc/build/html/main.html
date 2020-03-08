@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ca">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Documentació Pràctica-2 &#8212; Receptari 1.01 documentació</title>
+    <title>Mòdul main &#8212; Receptari 1.01 documentació</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="index" title="Índex" href="genindex.html" />
     <link rel="search" title="Cerca" href="search.html" />
-    <link rel="next" title="Mòdul producte" href="producte.html" /> 
+    <link rel="prev" title="Mòdul interpret" href="interpret.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,9 +37,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >mòduls</a> |</li>
         <li class="right" >
-          <a href="producte.html" title="Mòdul producte"
-             accesskey="N">següent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Receptari 1.01 documentació</a> &#187;</li> 
+          <a href="interpret.html" title="Mòdul interpret"
+             accesskey="P">anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Receptari 1.01 documentació</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -48,28 +48,39 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="documentacio-practica-2">
-<h1>Documentació Pràctica-2<a class="headerlink" href="#documentacio-practica-2" title="Link permanent a aquest títol">¶</a></h1>
-<div class="section" id="index">
-<h2>Índex<a class="headerlink" href="#index" title="Link permanent a aquest títol">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="producte.html">Mòdul <em>producte</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="recepta.html">Mòdul <em>recepta</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="receptari.html">Module <em>receptari</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="interpret.html">Mòdul <em>interpret</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="main.html">Mòdul <em>main</em></a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section" id="index-i-taula-de-moduls">
-<h1>Índex i taula de móduls<a class="headerlink" href="#index-i-taula-de-moduls" title="Link permanent a aquest títol">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Índex</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Índex de Mòduls</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Pàgina de Cerca</span></a></li>
-</ul>
+  <span class="target" id="module-main"></span><div class="section" id="modul-main">
+<h1>Mòdul <em>main</em><a class="headerlink" href="#modul-main" title="Link permanent a aquest títol">¶</a></h1>
+<p>El modul main.py conte el programa principal.
+Aquest programa crea una instància de Receptari
+i una instància d’Interpret juntament amb les
+funcions que implementen les ordres necessaries.</p>
+<p>A continuacio, engega l’intèrpret. Aquest es va
+comunicant interactivament amb l’usuari fins acabar
+la sessio.</p>
+<p>L’interpret ha de tenir les seguents ordres:</p>
+<dl class="docutils">
+<dt>producte &lt;nom&gt; – Receptari.afegeix_producte(nomp)</dt>
+<dd>Afegeix un producte al receptari que te nom &lt;nom&gt;.</dd>
+<dt>recepta &lt;nom&gt; – Receptari.afegeix_recepta(n)</dt>
+<dd>Afegeix una recepta al receptari que te nom &lt;nom&gt;.</dd>
+<dt>ingredient &lt;nomp&gt; &lt;nomr&gt; &lt;qua&gt; – Receptari.afegeix_ingredient_recepta(nomr,nomp,q)</dt>
+<dd>Afegeix &lt;qua&gt; grams de l’ingredient de nom &lt;nomp&gt; a la recepta de nom &lt;nomr&gt;.</dd>
+<dt>print &lt;ent&gt; [&lt;nom&gt;]</dt>
+<dd><p class="first">Escriu per pantalla segons el valor de &lt;ent&gt;. Si &lt;ent&gt; és:</p>
+<dl class="docutils">
+<dt>receptes</dt>
+<dd>Escriu la llista de noms de receptes del receptari.</dd>
+<dt>productes</dt>
+<dd>Escriu la llista de noms de producte del receptari.</dd>
+<dt>recepta</dt>
+<dd>Escriu els ingredients i la quantitat que intervenen en la recepta de nom &lt;nom&gt;.</dd>
+<dt>receptes-ing</dt>
+<dd>Escriu la llista de noms de recepta en les que participa l’ingredient anomenat &lt;nom&gt;.</dd>
+</dl>
+<p class="last">surt
+Acaba l’execució del programa.</p>
+</dd>
+</dl>
 </div>
 
 
@@ -78,22 +89,13 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Taula de Contingut</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Documentació Pràctica-2</a><ul>
-<li><a class="reference internal" href="#index">Índex</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#index-i-taula-de-moduls">Índex i taula de móduls</a></li>
-</ul>
-
-  <h4>Tema següent</h4>
-  <p class="topless"><a href="producte.html"
-                        title="capítol següent">Mòdul <em>producte</em></a></p>
+  <h4>Tema anterior</h4>
+  <p class="topless"><a href="interpret.html"
+                        title="capítol anterior">Mòdul <em>interpret</em></a></p>
   <div role="note" aria-label="source link">
     <h3>Aquesta Pàgina</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/main.rst.txt"
             rel="nofollow">Mostra Codi Font</a></li>
     </ul>
    </div>
@@ -121,9 +123,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >mòduls</a> |</li>
         <li class="right" >
-          <a href="producte.html" title="Mòdul producte"
-             >següent</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Receptari 1.01 documentació</a> &#187;</li> 
+          <a href="interpret.html" title="Mòdul interpret"
+             >anterior</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Receptari 1.01 documentació</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -1,0 +1,3 @@
+.. automodule:: main
+   :synopsis: INFO 5
+   :members:
