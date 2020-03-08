@@ -2,8 +2,32 @@
 # -*- coding: utf-8 -*-
 
 '''
-Module *recepta*
+Mòdul *recepta*
 ================
+
+El mòdul *recepta* defineix un nou tipus d'objectes basats en els anteriors (els
+Productes). Identifiquem una recepta amb el seu nom, o bé, pel seu conjunt de
+Productes i les seves quantitats en grams. 
+
+La forma triada per representar-les ha sigut mitjançant els següents atributs:
+ 
+\
+
+nom [str, Públic]: 
+    És el nom de la recepta     
+
+ingredients [List, Privat]
+    És una llista de tuples que enrrgistra els ingredients de cada recepta. Cada
+    tupla (p,q) codifica un producte p (atribut self.producte, heretat de la 
+    classe *Producte*) i la corresponent quantitat en grams q.
+
+\
+
+Definim la classe *Recepta* com mutable, ja que conté el mètode modificador, 
+*afegeix_ingredient*. A més a més, tenim altres mètodes per consultar 
+característiques concretes de la recepta, com ara *conte_ingredient*, 
+*quantitat_ingredient*, *pes_total* o *ingredients*. En total 5 mètodes únics
+pels objectes tipus *Recepta*, explicats a continuació:
 '''
 
 from producte import*
@@ -11,7 +35,40 @@ from string import*
 
 
 class Recepta(object):
-    """docstring for Recepta."""
+    """
+    -- Doctests conjunts de la classe *Recepta* --
+
+    >>> r = Recepta('Pastís')
+    >>> r.afegeix_ingredient('Nata', 200)
+    [('Nata', 200)]
+    >>> r.conte_ingredient('Nata')
+    True
+    >>> r.conte_ingredient('Xocolata')
+    False
+    >>> r.afegeix_ingredient('Xocolata', 100)
+    [('Nata', 200), ('Xocolata', 100)]
+    >>> r.pes_total()
+    300
+    >>> r.ingredients()
+    ['Nata', 'Xocolata']
+    >>> r.quantitat_ingredient('Xocolata')
+    100
+    >>> r.afegeix_ingredient('Maduixes', 50)
+    [('Nata', 200), ('Xocolata', 100), ('Maduixes', 50)]
+    >>> r.afegeix_ingredient('Xocolata', 200)
+    [('Nata', 200), ('Maduixes', 50), ('Xocolata', 300)]
+    >>> r.pes_total()
+    550
+    >>> r.ingredients()
+    ['Nata', 'Maduixes', 'Xocolata']
+    >>> r.conte_ingredient('Maduixes')
+    True
+    >>> r.conte_ingredient('Poma')
+    False
+    >>> r.quantitat_ingredient('Nata')
+    200
+
+    """
 
     def __init__(self, nom):
         self.nom = nom
@@ -19,12 +76,23 @@ class Recepta(object):
 
     def afegeix_ingredient(self, p,q):
         '''
-        Modificador. Afegeix q grams del producte p a la recepta\n
-        Si la recepta ja contenia el Producte p, incrementa la seva quantitat en q grams.
+        -- Mètode modificador. Afegeix q grams del producte p a la recepta --
+
+        \
+
+        Si la recepta ja contenia el Producte p, incrementa la seva quantitat 
+        en q grams. 
+
+        \
+
+        El paràmetre p, tot i ser inicialment un *string*, és processat i 
+        tractat com a objecte tipus Producte() al mètode (s'ha introduït com
+        a *string* per comoditat).
 
             :param p: Producte
             :type p: str
-            :returns:
+            :returns: Llista de tuples: [(p_1,q_1), (p_2,q_2)...]
+            :rtype: list
 
         >>> r = Recepta('Pastis Xocolata')
         >>> r.afegeix_ingredient('Llet', 150)
@@ -51,7 +119,12 @@ class Recepta(object):
         
     def conte_ingredient(self,p):
         '''
-        Donat un producte, retorna True si està dins la recepta
+        -- Donat un producte, retorna True si està dins la recepta --
+
+            :param p: Producte
+            :type p: str
+            :returns: True or False
+            :rtype: bool
 
         >>> suc = Recepta('suc')
         >>> suc.afegeix_ingredient('taronja', 200)
@@ -76,6 +149,11 @@ class Recepta(object):
         '''
         -- Retorna la quantitat de producte p en grams o 0 si no en conté --
 
+            :param p: Producte
+            :type p: str
+            :returns: Quantitat en grams del producte
+            :rtype: int
+
         >>> r = Recepta('Banana split')
         >>> r.afegeix_ingredient('Banana', 200)
         [('Banana', 200)]
@@ -87,6 +165,7 @@ class Recepta(object):
         0
         >>> r.quantitat_ingredient('Xocolata')
         100
+   
         '''
         for element in self._ingredients:
             if element[0] == p:
@@ -115,7 +194,7 @@ class Recepta(object):
 
     def ingredients(self):
         '''
-        -- Retorna la llista d'ingredients --
+        -- Retorna la llista d'ingredients de la recepta --
 
         >>> llimonada = Recepta('llimonada')
         >>> llimonada.afegeix_ingredient('Llimona', 50)
