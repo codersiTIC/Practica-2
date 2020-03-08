@@ -52,6 +52,8 @@
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Module *producte*</span>
 <span class="sd">=================</span>
+
+<span class="sd">Bàsicament, la classe Producte retorna el str del producte mateix</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 <div class="viewcode-block" id="Producte"><a class="viewcode-back" href="../producte.html#producte.Producte">[docs]</a><span class="k">class</span> <span class="nc">Producte</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -59,17 +61,15 @@
 <span class="sd">    docstring for Product.</span>
 
 <span class="sd">    &gt;&gt;&gt; Producte(&#39;orange&#39;).producte</span>
-<span class="sd">    &#39;Orange&#39;</span>
-<span class="sd">    &gt;&gt;&gt; Producte(&#39;banana&#39;).producte</span>
-<span class="sd">    &#39;Banana&#39;</span>
+<span class="sd">    &#39;orange&#39;</span>
+<span class="sd">    &gt;&gt;&gt; Producte(&#39;BanAna&#39;).producte</span>
+<span class="sd">    &#39;BanAna&#39;</span>
 <span class="sd">    &gt;&gt;&gt; Producte(&#39;salt&#39;).producte</span>
-<span class="sd">    &#39;Salt&#39;</span>
-
-
+<span class="sd">    &#39;salt&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">producte</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">producte</span> <span class="o">=</span> <span class="n">producte</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">producte</span> <span class="o">=</span> <span class="n">producte</span></div>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 

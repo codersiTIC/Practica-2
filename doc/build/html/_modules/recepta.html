@@ -57,28 +57,32 @@
 <span class="kn">from</span> <span class="nn">producte</span> <span class="kn">import</span><span class="o">*</span>
 <span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span><span class="o">*</span>
 
+
 <div class="viewcode-block" id="Recepta"><a class="viewcode-back" href="../recepta.html#recepta.Recepta">[docs]</a><span class="k">class</span> <span class="nc">Recepta</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;docstring for Recepta.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nom</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nom</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="n">nom</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span> <span class="o">=</span> <span class="n">ingredients</span> <span class="c1"># llista de tuples (p, q) (producte, quantitat)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="Recepta.afegeix_ingredient"><a class="viewcode-back" href="../recepta.html#recepta.Recepta.afegeix_ingredient">[docs]</a>    <span class="k">def</span> <span class="nf">afegeix_ingredient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Modificador. Afegeix q grams del producte p a la recepta\n</span>
 <span class="sd">        Si la recepta ja contenia el Producte p, incrementa la seva quantitat en q grams.</span>
 
+<span class="sd">            :param p: Producte</span>
+<span class="sd">            :type p: str</span>
+<span class="sd">            :returns:</span>
+
 <span class="sd">        &gt;&gt;&gt; r = Recepta(&#39;Pastís Xocolata&#39;, [(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500)])</span>
-<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;Llet&#39;, 150)</span>
+<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;LLet&#39;, 150)</span>
 <span class="sd">        [(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500), (&#39;Llet&#39;, 150)]</span>
 <span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;llet&#39;, 100)</span>
 <span class="sd">        [(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500), (&#39;Llet&#39;, 250)]</span>
-<span class="sd">        &#39;&#39;&#39;</span> 
-
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="p">:</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">capitalize</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
                 <span class="n">j</span> <span class="o">=</span> <span class="n">element</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 
@@ -88,7 +92,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Producte</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">producte</span><span class="p">,</span><span class="n">q</span><span class="p">))</span>
-        
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span></div>
 
 
@@ -96,22 +100,20 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Donat un producte, retorna True si està dins la recepta</span>
 
-<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;, [(&#39;llimona&#39;, 50), (&#39;aigua&#39;, 1000), (&#39;sucre&#39;, 10)])</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;llimona&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;, [(&#39;lLimona&#39;, 50), (&#39;aigua&#39;, 1000), (&#39;sucre&#39;, 10)])</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;Llimona&#39;)</span>
 <span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;aigua&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;Aigua&#39;)</span>
 <span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;poma&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;PoMa&#39;)</span>
 <span class="sd">        False</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
-
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
-
 
 <div class="viewcode-block" id="Recepta.quantitat_ingredient"><a class="viewcode-back" href="../recepta.html#recepta.Recepta.quantitat_ingredient">[docs]</a>    <span class="k">def</span> <span class="nf">quantitat_ingredient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -127,7 +129,7 @@
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">capitalize</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">element</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">else</span><span class="p">:</span>
