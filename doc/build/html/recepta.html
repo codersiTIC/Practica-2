@@ -73,11 +73,13 @@
 </tbody>
 </table>
 </div></blockquote>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;Pastís Xocolata&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;Xocolata&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Farina&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;LLet&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
-<span class="go">[(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500), (&#39;Llet&#39;, 150)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;llet&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="go">[(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500), (&#39;Llet&#39;, 250)]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;Pastis Xocolata&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Llet&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="go">[(&#39;Llet&#39;, 150)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;xocolata&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="go">[(&#39;Llet&#39;, 150), (&#39;xocolata&#39;, 200)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;xocolata&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="go">[(&#39;Llet&#39;, 150), (&#39;xocolata&#39;, 400)]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -86,12 +88,16 @@
 <dt id="recepta.Recepta.conte_ingredient">
 <code class="descname">conte_ingredient</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recepta.html#Recepta.conte_ingredient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recepta.Recepta.conte_ingredient" title="Link permanent a aquesta definició">¶</a></dt>
 <dd><p>Donat un producte, retorna True si està dins la recepta</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;llimonada&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;lLimona&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;aigua&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;sucre&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">conte_ingredient</span><span class="p">(</span><span class="s1">&#39;Llimona&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">suc</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;suc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">suc</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;taronja&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="go">[(&#39;taronja&#39;, 200)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">suc</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;aigua&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="go">[(&#39;taronja&#39;, 200), (&#39;aigua&#39;, 1000)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">suc</span><span class="o">.</span><span class="n">conte_ingredient</span><span class="p">(</span><span class="s1">&#39;taronja&#39;</span><span class="p">)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">conte_ingredient</span><span class="p">(</span><span class="s1">&#39;Aigua&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">suc</span><span class="o">.</span><span class="n">conte_ingredient</span><span class="p">(</span><span class="s1">&#39;aigua&#39;</span><span class="p">)</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">conte_ingredient</span><span class="p">(</span><span class="s1">&#39;PoMa&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">suc</span><span class="o">.</span><span class="n">conte_ingredient</span><span class="p">(</span><span class="s1">&#39;poma&#39;</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>
@@ -101,10 +107,14 @@
 <dt id="recepta.Recepta.ingredients">
 <code class="descname">ingredients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recepta.html#Recepta.ingredients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recepta.Recepta.ingredients" title="Link permanent a aquesta definició">¶</a></dt>
 <dd><p>– Retorna la llista d’ingredients –</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;llimonada&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;Llimona&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Aigua&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;llimonada&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Llimona&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="go">[(&#39;Llimona&#39;, 50)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Aigua&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="go">[(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">ingredients</span><span class="p">()</span>
 <span class="go">[&#39;Llimona&#39;, &#39;Aigua&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;sucre&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Sucre&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="go">[(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000), (&#39;Sucre&#39;, 50)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">ingredients</span><span class="p">()</span>
 <span class="go">[&#39;Llimona&#39;, &#39;Aigua&#39;, &#39;Sucre&#39;]</span>
@@ -116,9 +126,13 @@
 <dt id="recepta.Recepta.pes_total">
 <code class="descname">pes_total</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recepta.html#Recepta.pes_total"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recepta.Recepta.pes_total" title="Link permanent a aquesta definició">¶</a></dt>
 <dd><p>– Retorna el pes base total de la recepta en grams –</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;llimonada&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;llimona&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;aigua&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;sucre&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;llimonada&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Llimona&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="go">[(&#39;Llimona&#39;, 50)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Aigua&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="go">[(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">llimonada</span><span class="o">.</span><span class="n">pes_total</span><span class="p">()</span>
-<span class="go">1060</span>
+<span class="go">1050</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -127,7 +141,11 @@
 <dt id="recepta.Recepta.quantitat_ingredient">
 <code class="descname">quantitat_ingredient</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recepta.html#Recepta.quantitat_ingredient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recepta.Recepta.quantitat_ingredient" title="Link permanent a aquesta definició">¶</a></dt>
 <dd><p>– Retorna la quantitat de producte p en grams o 0 si no en conté –</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;Banana split&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">),(</span><span class="s1">&#39;Xocolata&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">Recepta</span><span class="p">(</span><span class="s1">&#39;Banana split&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="go">[(&#39;Banana&#39;, 200)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">afegeix_ingredient</span><span class="p">(</span><span class="s1">&#39;Xocolata&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">[(&#39;Banana&#39;, 200), (&#39;Xocolata&#39;, 100)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">quantitat_ingredient</span><span class="p">(</span><span class="s1">&#39;Banana&#39;</span><span class="p">)</span>
 <span class="go">200</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">quantitat_ingredient</span><span class="p">(</span><span class="s1">&#39;Blueberry&#39;</span><span class="p">)</span>

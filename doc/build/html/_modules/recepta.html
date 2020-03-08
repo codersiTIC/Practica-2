@@ -74,11 +74,13 @@
 <span class="sd">            :type p: str</span>
 <span class="sd">            :returns:</span>
 
-<span class="sd">        &gt;&gt;&gt; r = Recepta(&#39;Pastís Xocolata&#39;, [(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500)])</span>
-<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;LLet&#39;, 150)</span>
-<span class="sd">        [(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500), (&#39;Llet&#39;, 150)]</span>
-<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;llet&#39;, 100)</span>
-<span class="sd">        [(&#39;Xocolata&#39;, 200), (&#39;Farina&#39;, 500), (&#39;Llet&#39;, 250)]</span>
+<span class="sd">        &gt;&gt;&gt; r = Recepta(&#39;Pastis Xocolata&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;Llet&#39;, 150)</span>
+<span class="sd">        [(&#39;Llet&#39;, 150)]</span>
+<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;xocolata&#39;, 200)</span>
+<span class="sd">        [(&#39;Llet&#39;, 150), (&#39;xocolata&#39;, 200)]</span>
+<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;xocolata&#39;, 200)</span>
+<span class="sd">        [(&#39;Llet&#39;, 150), (&#39;xocolata&#39;, 400)]</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="p">:</span>
@@ -94,18 +96,21 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Producte</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">producte</span><span class="p">,</span><span class="n">q</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span></div>
-
-
+        
 <div class="viewcode-block" id="Recepta.conte_ingredient"><a class="viewcode-back" href="../recepta.html#recepta.Recepta.conte_ingredient">[docs]</a>    <span class="k">def</span> <span class="nf">conte_ingredient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Donat un producte, retorna True si està dins la recepta</span>
 
-<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;, [(&#39;lLimona&#39;, 50), (&#39;aigua&#39;, 1000), (&#39;sucre&#39;, 10)])</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;Llimona&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; suc = Recepta(&#39;suc&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; suc.afegeix_ingredient(&#39;taronja&#39;, 200)</span>
+<span class="sd">        [(&#39;taronja&#39;, 200)]</span>
+<span class="sd">        &gt;&gt;&gt; suc.afegeix_ingredient(&#39;aigua&#39;, 1000)</span>
+<span class="sd">        [(&#39;taronja&#39;, 200), (&#39;aigua&#39;, 1000)]</span>
+<span class="sd">        &gt;&gt;&gt; suc.conte_ingredient(&#39;taronja&#39;)</span>
 <span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;Aigua&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; suc.conte_ingredient(&#39;aigua&#39;)</span>
 <span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.conte_ingredient(&#39;PoMa&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; suc.conte_ingredient(&#39;poma&#39;)</span>
 <span class="sd">        False</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
@@ -119,14 +124,17 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        -- Retorna la quantitat de producte p en grams o 0 si no en conté --</span>
 
-<span class="sd">        &gt;&gt;&gt; r = Recepta(&#39;Banana split&#39;, [(&#39;Banana&#39;, 200),(&#39;Xocolata&#39;, 100)])</span>
+<span class="sd">        &gt;&gt;&gt; r = Recepta(&#39;Banana split&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;Banana&#39;, 200)</span>
+<span class="sd">        [(&#39;Banana&#39;, 200)]</span>
+<span class="sd">        &gt;&gt;&gt; r.afegeix_ingredient(&#39;Xocolata&#39;, 100)</span>
+<span class="sd">        [(&#39;Banana&#39;, 200), (&#39;Xocolata&#39;, 100)]</span>
 <span class="sd">        &gt;&gt;&gt; r.quantitat_ingredient(&#39;Banana&#39;)</span>
 <span class="sd">        200</span>
 <span class="sd">        &gt;&gt;&gt; r.quantitat_ingredient(&#39;Blueberry&#39;)</span>
 <span class="sd">        0</span>
 <span class="sd">        &gt;&gt;&gt; r.quantitat_ingredient(&#39;Xocolata&#39;)</span>
 <span class="sd">        100</span>
-
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
@@ -140,9 +148,14 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        -- Retorna el pes base total de la recepta en grams --</span>
 
-<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;, [(&#39;llimona&#39;, 50), (&#39;aigua&#39;, 1000), (&#39;sucre&#39;, 10)])</span>
+
+<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.afegeix_ingredient(&#39;Llimona&#39;, 50)</span>
+<span class="sd">        [(&#39;Llimona&#39;, 50)]</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.afegeix_ingredient(&#39;Aigua&#39;, 1000)</span>
+<span class="sd">        [(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000)]</span>
 <span class="sd">        &gt;&gt;&gt; llimonada.pes_total()</span>
-<span class="sd">        1060</span>
+<span class="sd">        1050</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">tupla</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">tupla</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="p">])</span></div>
@@ -152,10 +165,14 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        -- Retorna la llista d&#39;ingredients --</span>
 
-<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;, [(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000)])</span>
+<span class="sd">        &gt;&gt;&gt; llimonada = Recepta(&#39;llimonada&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.afegeix_ingredient(&#39;Llimona&#39;, 50)</span>
+<span class="sd">        [(&#39;Llimona&#39;, 50)]</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.afegeix_ingredient(&#39;Aigua&#39;, 1000)</span>
+<span class="sd">        [(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000)]</span>
 <span class="sd">        &gt;&gt;&gt; llimonada.ingredients()</span>
 <span class="sd">        [&#39;Llimona&#39;, &#39;Aigua&#39;]</span>
-<span class="sd">        &gt;&gt;&gt; llimonada.afegeix_ingredient(&#39;sucre&#39;, 50)</span>
+<span class="sd">        &gt;&gt;&gt; llimonada.afegeix_ingredient(&#39;Sucre&#39;, 50)</span>
 <span class="sd">        [(&#39;Llimona&#39;, 50), (&#39;Aigua&#39;, 1000), (&#39;Sucre&#39;, 50)]</span>
 <span class="sd">        &gt;&gt;&gt; llimonada.ingredients()</span>
 <span class="sd">        [&#39;Llimona&#39;, &#39;Aigua&#39;, &#39;Sucre&#39;]</span>

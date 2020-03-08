@@ -26,7 +26,7 @@ class Recepta(object):
             :type p: str
             :returns:
 
-        >>> r = Recepta('Pastís Xocolata')
+        >>> r = Recepta('Pastis Xocolata')
         >>> r.afegeix_ingredient('Llet', 150)
         [('Llet', 150)]
         >>> r.afegeix_ingredient('xocolata', 200)
