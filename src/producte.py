@@ -2,10 +2,15 @@
 # -*- coding: utf-8 -*-
 
 '''
-Module *producte*
+Mòdul *producte*
 =================
 
-Bàsicament, la classe Producte retorna el str del producte mateix
+La classe *Producte* s'encarrega de definir aquests nous tipus d'objectes,
+utilitzats als següents mòduls. Són les peces essencials d'aquest exercici 
+(sense productes no hi hauria receptes ni, evidentment, receptari). 
+
+Únicament conté un atribut, *self.producte*, corresponent al nom del producte
+(representat com a *string*). 
 '''
 
 class Producte(object):
