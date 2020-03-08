@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from receptari import*
 
 class Interpret(object):
     def __init__(self):
@@ -39,15 +40,22 @@ class Interpret(object):
         resta de mots els paràmetres d’aquesta ordre. Finalment executa la funció corresponent a
         l’ordre i li passa com a paràmetre la resta de mots en una llista.
         '''
+        
         while True:
             print self._prompt,
             p = raw_input()
             ll = p.split()
             ordres = ll[1:]
+            '''
+            print
+            print ll, ll[0], ll[1:]
+            print ordres
+            print self._dcom
+            '''
 
             if self._dcom.has_key(ll[0]):
                 for element in ordres:
                     self._dcom[ll[0]](element)
-
+                    #print self._dcom[ll[0]](element)
             elif ll[0] == 'surt' or ll[0] == 'Surt':
                 break

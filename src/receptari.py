@@ -17,7 +17,6 @@ productes [dict, Privat]
 '''
 
 from recepta import*
-from string import*
 
 class Receptari(object):
     """docstring for Receptari."""
@@ -64,7 +63,7 @@ class Receptari(object):
         if nomp in self._productes.keys():
             print "El producte ja existeix"
         else:
-            self._productes[nomp] = Recepta(nomp)
+            self._productes[nomp] = Producte(nomp)
 
 
     def afegeix_ingredient_recepta(self,nomr,nomp,q):
