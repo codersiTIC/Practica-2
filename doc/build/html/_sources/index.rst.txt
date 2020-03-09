@@ -12,6 +12,7 @@ Documentació Pràctica-2
 .. toctree::
    :maxdepth: 2
 
+   projecte
    producte
    recepta
    receptari

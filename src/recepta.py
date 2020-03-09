@@ -17,11 +17,12 @@ nom [str, Públic]:
     És el nom de la recepta
 
 ingredients [List, Privat]
-    És una llista de tuples que enrrgistra els ingredients de cada recepta. Cada
+    És una llista de tuples que enrergistra els ingredients de cada recepta. Cada
     tupla (p,q) codifica un producte p (atribut self.producte, heretat de la
     classe *Producte*) i la corresponent quantitat en grams q.
 
 \
+
 
 Definim la classe *Recepta* com mutable, ja que conté el mètode modificador,
 *afegeix_ingredient*. A més a més, tenim altres mètodes per consultar
@@ -100,20 +101,34 @@ class Recepta(object):
         >>> r.afegeix_ingredient('xocolata', 200)
         [('Llet', 150), ('xocolata', 400)]
         '''
-        i = 0
+
+        i = -5
+        '''
+        Aquest -5 el posem perquè fins al final hem vist un error MOLT GREU, teniem
+        la variable i inicialitzada a 0, i si trobem dins d'una
+        tupla un valor repetir el canviem, generant-nos "una senyal de canvi".
+
+        L'error CRUCIAL, amb que ens hem topat ha sigut al repetir dos Productes
+        seguits iguals, fent que el primer index sigui 0 el canviem a 0 peró la senyal
+        no "haurà canviat" ja que el criteri decidit per canviar era que fos diferent a 0.
+
+        Doncs, llavors, per aixó inicialitzem a qualsevol valor negatiu, o de diferentes
+        maneres.
+        '''
         for element in self._ingredients:
             if element[0] == p:
                 j = element[1]
                 i = self._ingredients.index(element)
+                break
 
-        if i != 0:
+        if i != -5: # aixo tmb
             del self._ingredients[i]
             self._ingredients.append((Producte(p).producte, q + j))
+            return self._ingredients
 
         else:
             self._ingredients.append((Producte(p).producte,q))
-
-        return self._ingredients
+            return self._ingredients
 
     def conte_ingredient(self,p):
         '''
@@ -190,7 +205,7 @@ class Recepta(object):
         '''
         :returns: Una llista d'ingredients de la recepta
         :rtype: llista
-        
+
         >>> llimonada = Recepta('llimonada')
         >>> llimonada.afegeix_ingredient('Llimona', 50)
         [('Llimona', 50)]
@@ -205,3 +220,9 @@ class Recepta(object):
         '''
 
         return [tupla[0] for tupla in self._ingredients]
+
+
+if __name__ == '__main__':
+    r = Recepta('gofre')
+    print r.afegeix_ingredient('ous', 100)
+    print r.afegeix_ingredient('ous', 100)

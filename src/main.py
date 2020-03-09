@@ -10,9 +10,9 @@ Aquest programa crea una instància de Receptari
 i una instància d’Interpret juntament amb les
 funcions que implementen les ordres necessaries.
 
-A continuacio, engega l’intèrpret. Aquest es va
+A continuació, engega l’intèrpret. Aquest es va
 comunicant interactivament amb l’usuari fins acabar
-la sessio.
+la sessió.
 
 L’interpret ha de tenir les seguents ordres:
 
@@ -76,7 +76,7 @@ def printlist(ent = str(), nom = str()):
             print r.ingredients()
 
     elif ent == 'recepta':
-        if ent in r.ingredients():
+        if nom in r.receptes():
             print r.recepta(nom)
         else:
             print ("La recepta < %s > no existeix")%(nom)

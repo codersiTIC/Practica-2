@@ -1,3 +1,3 @@
 .. automodule:: main
-   :synopsis: INFO 5
+   :synopsis: El programa que encapsula tots els mòduls.
    :members:

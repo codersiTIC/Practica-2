@@ -131,7 +131,6 @@ class Receptari(object):
             else:
                 self._receptes[nomr].afegeix_ingredient(nomp, q)
 
-
     def receptes_ingredient(self,nomp):
         '''
         :param nomp: Nom del producte
@@ -175,7 +174,7 @@ class Receptari(object):
         '''
         :returns: La llista dels noms de les receptes que conté el receptari
         :rtype: llista
-        
+
         >>> Receptari = Receptari()
         >>> Receptari.afegeix_recepta('Gofre')
         >>> Receptari.afegeix_recepta('Pastis Xocolata')
@@ -193,7 +192,7 @@ class Receptari(object):
         '''
         :returns: La llista dels noms de productes del receptari
         :rtype: llista
-        
+
         >>> Receptari = Receptari()
         >>> Receptari.afegeix_recepta('Gofre')
 
@@ -230,6 +229,7 @@ class Receptari(object):
         >>> Receptari.afegeix_ingredient_recepta('Gofre', 'Farina', 500)
         >>> Receptari.afegeix_ingredient_recepta('Gofre', 'Llet', 300)
         >>> Receptari.afegeix_ingredient_recepta('Gofre', 'Sucre', 200)
+        >>> Receptari.afegeix_ingredient_recepta('Gofre', 'Sucre', 200)
 
         >>> Receptari.receptes_ingredient('Farina')
         ['Pastis Xocolata', 'Gofre']
@@ -241,8 +241,6 @@ class Receptari(object):
         []
 
         >>> Receptari.recepta('Gofre')
-        [('Farina', 500), ('Llet', 300), ('Sucre', 200)]
-        >>> Receptari.recepta('Gofre')
-        [('Farina', 500), ('Llet', 300), ('Sucre', 200)]
+        [('Farina', 500), ('Llet', 300), ('Sucre', 400)]
         '''
         return self._receptes[nomr]._ingredients

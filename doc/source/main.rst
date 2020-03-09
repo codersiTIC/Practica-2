@@ -1,3 +1,3 @@
 .. automodule:: main
-   :synopsis: main
+   :synopsis: El programa que encapsula tots els mòduls.
    :members:

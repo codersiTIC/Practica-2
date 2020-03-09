@@ -1,3 +1,3 @@
 .. automodule:: recepta
-   :synopsis: INFO 2
+   :synopsis: Una classe per poder manipular receptes, conté productes i quantitats
    :members:
