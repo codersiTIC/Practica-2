@@ -36,8 +36,10 @@ class Interpret(object):
         >>>
         >>> i = Interpret()
         >>> i.set_prompt("**")
+        >>>
         >>> i.afegeix_ordre("menja", c1)
         >>> i.afegeix_ordre("beu", c2)
+        >>>
         >>> i.run()
         ∗∗ menja caramel
         executo l’ordre 1: caramel
@@ -45,7 +47,6 @@ class Interpret(object):
         executo l’ordre 2: xocolata
         ∗∗ Surt
         >>>
-
     """
     def __init__(self):
         self._dcom = dict()
@@ -79,7 +80,7 @@ class Interpret(object):
         >>> i.set_prompt("**")
         >>> def eleva2(n): return n**2
         >>>
-        >>> afegeix_ordre("hola", eleva2)
+        >>> afegeix_ordre("eleva", eleva2)
         >>>
         >>> i.run()
         ** eleva 10
@@ -120,7 +121,7 @@ class Interpret(object):
                 if len(ordres) == 3:
                     ordres[0], ordres[1] = ordres[1], ordres[0]
                     ordres[2] = int(ordres[2])
-                    
+
                 if self._dcom.has_key(ll[0]):
                     if len(ordres) == 0:
                         self._dcom[ll[0]]()

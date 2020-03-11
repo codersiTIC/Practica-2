@@ -49,23 +49,22 @@ from interpret import*
 
 
 def help():
-    s = i._dcom.keys().append('surt')
     print
-    print 'Ordres disponibles:', s
+    print 'Ordres disponibles:'
     print
-    print '** producte <nom> --> Afegeix un producte al receptari de nom <nom> \n'
-    print '** recepta <nom> --> Afegeix una recepta al receptari que té nom <nom> \n'
-    print "** ingredient <nomp> <nomr> <qua> --> Afegeix <qua> grams de l'ingredient de"
+    print ' ** producte <nom> --> Afegeix un producte al receptari de nom <nom> \n'
+    print ' ** recepta <nom> --> Afegeix una recepta al receptari que té nom <nom> \n'
+    print " ** ingredient <nomp> <nomr> <qua> --> Afegeix <qua> grams de l'ingredient de"
     print "                                      nom <nomp> al la recepta <nomr> \n"
-    print "** print <ent> [<nom>] --> Escriu per pantalla segons el valor de <ent>. Si"
+    print " ** print <ent> [<nom>] --> Escriu per pantalla segons el valor de <ent>. Si"
     print "                           <ent> és: \n"
-    print "   ** receptes --> Escriu la llista de noms de receptes del receptari \n"
-    print "   ** productes --> Escriu la llista de noms de producte del receptari \n"
-    print "   ** recepta --> Escriu els ingredients i la quantitat que intervenen en la"
+    print "     ** receptes --> Escriu la llista de noms de receptes del receptari \n"
+    print "     ** productes --> Escriu la llista de noms de producte del receptari \n"
+    print "     ** recepta --> Escriu els ingredients i la quantitat que intervenen en la"
     print "                  recepta de nom <nom>\n"
-    print "   ** receptes-ing --> Escriu la llista de noms de recepta en les que participa"
+    print "     ** receptes-ing --> Escriu la llista de noms de recepta en les que participa"
     print "                       l’ingredient anomenat <nom> \n"
-    print "** surt --> Acaba l'execució del programa"
+    print " ** surt --> Acaba l'execució del programa"
 
 
 def printlist(ent = str(), nom = str()):
